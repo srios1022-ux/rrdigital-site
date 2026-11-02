@@ -12,7 +12,7 @@
 <body>
 <header class="site"><div class="wrap">
   <a class="brand" href="index.html"><picture><source srcset="img/rr-mark-light.svg" media="(prefers-color-scheme: dark)"><img src="img/rr-mark.svg" alt="" width="57" height="28"></picture><span>RR Digital</span></a>
-  <nav><a href="#apps">Apps</a><a href="#contact">Contact</a></nav>
+  <nav><a href="#apps">Apps</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
 </div></header>
 
 <main class="wrap">
@@ -21,8 +21,13 @@
   do one job well: tools field crews can pick up in a minute, and games worth coming back to.</p>
 
   <h2 id="apps">Our apps</h2>
+  <div class="filters" role="group" aria-label="Show apps">
+    <button class="on" data-show="all" aria-pressed="true">All</button>
+    <button data-show="work" aria-pressed="false">Work apps</button>
+    <button data-show="game" aria-pressed="false">Games</button>
+  </div>
   <div class="apps">
-    <div class="app">
+    <div class="app" data-kind="work">
       <img src="img/row-mapper.png" alt="ROW Mapper app icon">
       <div>
         <h3>ROW Mapper</h3>
@@ -35,7 +40,7 @@
         </div>
       </div>
     </div>
-    <div class="app">
+    <div class="app" data-kind="game">
       <img src="img/henhouse-hollow.png" alt="Henhouse Hollow app icon">
       <div>
         <h3>Henhouse Hollow</h3>
@@ -48,6 +53,18 @@
     </div>
   </div>
 
+  <h2 id="about">About us</h2>
+  <p>RR Digital was started by someone who works in oil and gas field operations: on leases, along
+  pipelines, and around the equipment crews deal with every day. We've seen what slows a job down. Maps
+  that live on one person's laptop. KMZ files emailed back and forth until nobody knows which one is
+  current. A line someone marked last month that the next crew can't find.</p>
+  <p>ROW Mapper came out of that work. It's built around how field crews actually operate: no cell service
+  on location, a truck waiting, and a supervisor who needs the map today, not next week. When problems came
+  up in the field, we stayed with them until they were solved and the job could move forward. We build and
+  support our apps the same way.</p>
+  <p>We also make games, because a good app should be easy and enjoyable to use, whether it's for work or
+  for fun.</p>
+
   <h2 id="contact">Contact</h2>
   <p>Questions, support or business inquiries: <a href="mailto:support@rrdigital.app">support@rrdigital.app</a>.
   We usually reply within one business day.</p>
@@ -56,5 +73,13 @@
 <footer class="site"><div class="wrap">
   © 2026 RR Digital · Oklahoma, USA
 </div></footer>
+<script>
+  // Work apps / Games buttons. Without scripts, every app simply shows.
+  const buttons = document.querySelectorAll('.filters button');
+  buttons.forEach(b => b.addEventListener('click', () => {
+    buttons.forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); });
+    document.querySelectorAll('.app[data-kind]').forEach(a => { a.hidden = b.dataset.show !== 'all' && a.dataset.kind !== b.dataset.show; });
+  }));
+</script>
 </body>
 </html>

@@ -46,6 +46,13 @@ h2 { font-size: 22px; margin: 36px 0 10px; }
 h3 { font-size: 17px; margin: 22px 0 6px; }
 .lead { font-size: 19px; color: var(--muted); margin: 0 0 8px; }
 .meta { color: var(--muted); font-size: 14px; margin-top: 0; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 4px; }
+.filters button {
+  font: inherit; font-size: 15px; padding: 7px 16px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--panel); color: var(--text);
+}
+.filters button.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.app[hidden] { display: none; }
 .apps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }
 .app {
   display: flex; gap: 14px; align-items: flex-start;
